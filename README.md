@@ -2,6 +2,14 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.1.
 
+## About the Project
+
+This application was built using the following technologies:
+- **Angular 18**: A powerful framework for building web applications.
+- **TailwindCSS**: A utility-first CSS framework for styling.
+- **NgRx**: A state management library for managing application state.
+- **Angular Material UI**: A component library for building modern and responsive user interfaces.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.

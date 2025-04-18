@@ -1,0 +1,123 @@
+<div class="p-12">
+  <h1 class="text-2xl font-bold mb-4">Add Employee</h1>
+  <form (ngSubmit)="addEmployee()" #employeeForm="ngForm">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <!-- Username -->
+      <div class="mb-4">
+        <label for="username" class="block text-sm font-medium text-gray-700">Username <span class="text-red-500">*</span></label>
+        <input type="text" id="username" [(ngModel)]="username" name="username" required class="border rounded p-2 w-full">
+        <div *ngIf="employeeForm.controls['username']?.invalid && employeeForm.controls['username']?.touched" class="text-red-500 text-sm">
+          Username is required.
+        </div>
+      </div>
+
+      <!-- First Name -->
+      <div class="mb-4">
+        <label for="firstName" class="block text-sm font-medium text-gray-700">First Name <span class="text-red-500">*</span></label>
+        <input type="text" id="firstName" [(ngModel)]="firstName" name="firstName" required class="border rounded p-2 w-full">
+        <div *ngIf="employeeForm.controls['firstName']?.invalid && employeeForm.controls['firstName']?.touched" class="text-red-500 text-sm">
+          First name is required.
+        </div>
+      </div>
+
+      <!-- Last Name -->
+      <div class="mb-4">
+        <label for="lastName" class="block text-sm font-medium text-gray-700">Last Name <span class="text-red-500">*</span></label>
+        <input type="text" id="lastName" [(ngModel)]="lastName" name="lastName" required class="border rounded p-2 w-full">
+        <div *ngIf="employeeForm.controls['lastName']?.invalid && employeeForm.controls['lastName']?.touched" class="text-red-500 text-sm">
+          Last name is required.
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="mb-4">
+        <label for="email" class="block text-sm font-medium text-gray-700">Email <span class="text-red-500">*</span></label>
+        <input type="email" id="email" [(ngModel)]="email" name="email" required class="border rounded p-2 w-full">
+        <div *ngIf="employeeForm.controls['email']?.invalid && employeeForm.controls['email']?.touched" class="text-red-500 text-sm">
+          Please enter a valid email address.
+        </div>
+      </div>
+
+      <!-- Birth Date -->
+      <div class="mb-4">
+        <label for="birthDate" class="block text-sm font-medium text-gray-700">Birth Date <span class="text-red-500">*</span></label>
+        <input type="date" id="birthDate" [(ngModel)]="birthDate" name="birthDate" required max="{{ today }}" class="border rounded p-2 w-full">
+        <div *ngIf="employeeForm.controls['birthDate']?.invalid && employeeForm.controls['birthDate']?.touched" class="text-red-500 text-sm">
+          Birth date cannot be in the future.
+        </div>
+      </div>
+
+      <!-- Basic Salary -->
+      <div class="mb-4">
+        <label for="basicSalary" class="block text-sm font-medium text-gray-700">Basic Salary <span class="text-red-500">*</span></label>
+        <input type="number" id="basicSalary" [(ngModel)]="basicSalary" name="basicSalary" required class="border rounded p-2 w-full">
+        <div *ngIf="employeeForm.controls['basicSalary']?.invalid && employeeForm.controls['basicSalary']?.touched" class="text-red-500 text-sm">
+          Basic salary must be a number.
+        </div>
+      </div>
+
+      <!-- Status -->
+      <div class="mb-4">
+        <label for="status" class="block text-sm font-medium text-gray-700">Status <span class="text-red-500">*</span></label>
+        <select id="status" [(ngModel)]="status" name="status" required class="border rounded p-2 w-full">
+          <option value="Active">Active</option>
+          <option value="Inactive">Inactive</option>
+        </select>
+        <div *ngIf="employeeForm.controls['status']?.invalid && employeeForm.controls['status']?.touched" class="text-red-500 text-sm">
+          Status is required.
+        </div>
+      </div>
+
+ <!-- Group -->
+<div class="mb-4 relative">
+  <label for="group" class="block text-sm font-medium text-gray-700">
+    Group <span class="text-red-500">*</span>
+  </label>
+  <div class="border rounded p-2 w-full cursor-pointer" (click)="toggleDropdown()">
+    {{ group || 'Select a group' }}
+  </div>
+  <div *ngIf="dropdownOpen" class="absolute z-10 bg-white border rounded shadow-md w-full mt-1">
+    <!-- Search Input -->
+    <div class="p-2">
+      <input
+        type="text"
+        [(ngModel)]="groupSearch"
+        [ngModelOptions]="{standalone: true}"
+        (input)="filterGroups()"
+        placeholder="Search group..."
+        class="border rounded p-2 w-full"
+      />
+    </div>
+    <!-- Options -->
+    <ul class="max-h-40 overflow-y-auto">
+      <li
+        *ngFor="let group of filteredGroups"
+        (click)="selectGroup(group)"
+        class="p-2 hover:bg-gray-100 cursor-pointer"
+      >
+        {{ group.label }}
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="!group && groupTouched" class="text-red-500 text-sm">
+    Group is required.
+  </div>
+</div>
+
+      <!-- Description -->
+      <div class="mb-4 md:col-span-2">
+        <label for="description" class="block text-sm font-medium text-gray-700">Description <span class="text-red-500">*</span></label>
+        <textarea id="description" [(ngModel)]="description" name="description" required class="border rounded p-2 w-full"></textarea>
+        <div *ngIf="employeeForm.controls['description']?.invalid && employeeForm.controls['description']?.touched" class="text-red-500 text-sm">
+          Description is required.
+        </div>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="flex justify-between mt-4">
+      <button type="submit" [disabled]="!employeeForm.valid" [ngClass]="{'bg-gray-400 cursor-not-allowed': employeeForm.invalid, 'bg-blue-500 hover:bg-indigo-500': !employeeForm.invalid}" class="text-white px-4 py-2 rounded">Save</button>
+      <button type="button" (click)="cancel()" class="bg-blue-500 text-white px-4 py-2 rounded">Cancel</button>
+    </div>
+  </form>
+</div>

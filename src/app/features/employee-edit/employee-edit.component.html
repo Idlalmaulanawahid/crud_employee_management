@@ -1,0 +1,107 @@
+<div class="container mx-auto p-4">
+    <h1 class="text-2xl font-bold mb-4">Edit Employee</h1>
+    <form (ngSubmit)="updateEmployee()" #employeeForm="ngForm">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Username -->
+            <div class="mb-4">
+                <label for="username" class="block text-sm font-medium text-gray-700">Username <span class="text-red-500">*</span></label>
+                <input type="text" id="username" [(ngModel)]="employee!.username" name="username" required
+                    #username="ngModel" class="border rounded p-2 w-full">
+                <div *ngIf="username.invalid && username.touched" class="text-red-500 text-sm">
+                    Username is required.
+                </div>
+            </div>
+
+            <!-- First Name -->
+            <div class="mb-4">
+                <label for="firstName" class="block text-sm font-medium text-gray-700">First Name <span class="text-red-500">*</span></label>
+                <input type="text" id="firstName" [(ngModel)]="employee!.firstName" name="firstName" required
+                    #firstName="ngModel" class="border rounded p-2 w-full">
+                <div *ngIf="firstName.invalid && firstName.touched" class="text-red-500 text-sm">
+                    First name is required.
+                </div>
+            </div>
+
+            <!-- Last Name -->
+            <div class="mb-4">
+                <label for="lastName" class="block text-sm font-medium text-gray-700">Last Name <span class="text-red-500">*</span></label>
+                <input type="text" id="lastName" [(ngModel)]="employee!.lastName" name="lastName" required
+                    #lastName="ngModel" class="border rounded p-2 w-full">
+                <div *ngIf="lastName.invalid && lastName.touched" class="text-red-500 text-sm">
+                    Last name is required.
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-4">
+                <label for="email" class="block text-sm font-medium text-gray-700">Email <span class="text-red-500">*</span></label>
+                <input type="email" id="email" [(ngModel)]="employee!.email" name="email" required
+                    #email="ngModel" class="border rounded p-2 w-full">
+                <div *ngIf="email.invalid && email.touched" class="text-red-500 text-sm">
+                    Please enter a valid email address.
+                </div>
+            </div>
+
+            <!-- Birth Date -->
+            <div class="mb-4">
+                <label for="birthDate" class="block text-sm font-medium text-gray-700">Birth Date <span class="text-red-500">*</span></label>
+                <input type="date" id="birthDate" [(ngModel)]="employee!.birthDate" name="birthDate" required
+                    [max]="today" #birthDate="ngModel" class="border rounded p-2 w-full">
+                <div *ngIf="birthDate.invalid && birthDate.touched" class="text-red-500 text-sm">
+                    Birth date cannot be in the future.
+                </div>
+            </div>
+
+            <!-- Basic Salary -->
+            <div class="mb-4">
+                <label for="basicSalary" class="block text-sm font-medium text-gray-700">Basic Salary <span class="text-red-500">*</span></label>
+                <input type="number" id="basicSalary" [(ngModel)]="employee!.basicSalary" name="basicSalary" required
+                    #basicSalary="ngModel" class="border rounded p-2 w-full">
+                <div *ngIf="basicSalary.invalid && basicSalary.touched" class="text-red-500 text-sm">
+                    Basic salary must be a number.
+                </div>
+            </div>
+
+            <!-- Status -->
+            <div class="mb-4">
+                <label for="status" class="block text-sm font-medium text-gray-700">Status <span class="text-red-500">*</span></label>
+                <select id="status" [(ngModel)]="employee!.status" name="status" required
+                    #status="ngModel" class="border rounded p-2 w-full">
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                </select>
+                <div *ngIf="status.invalid && status.touched" class="text-red-500 text-sm">
+                    Status is required.
+                </div>
+            </div>
+
+            <!-- Group -->
+            <div class="mb-4">
+                <label for="group" class="block text-sm font-medium text-gray-700">Group <span class="text-red-500">*</span></label>
+                <input type="text" id="group" [(ngModel)]="employee!.group" name="group" required
+                    #group="ngModel" class="border rounded p-2 w-full">
+                <div *ngIf="group.invalid && group.touched" class="text-red-500 text-sm">
+                    Group is required.
+                </div>
+            </div>
+
+            <!-- Description -->
+            <div class="mb-4 md:col-span-2">
+                <label for="description" class="block text-sm font-medium text-gray-700">Description <span class="text-red-500">*</span></label>
+                <textarea id="description" [(ngModel)]="employee!.description" name="description" required
+                    #description="ngModel" class="border rounded p-2 w-full"></textarea>
+                <div *ngIf="description.invalid && description.touched" class="text-red-500 text-sm">
+                    Description is required.
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="flex justify-between mt-4">
+            <button type="submit" [disabled]="!employeeForm.valid"
+                [ngClass]="{'bg-gray-400 cursor-not-allowed': employeeForm.invalid, 'bg-blue-500 hover:bg-indigo-500': !employeeForm.invalid}"
+                class="text-white px-4 py-2 rounded">Update Employee</button>
+            <button type="button" (click)="cancel()" class="bg-blue-500 text-white px-4 py-2 rounded">Cancel</button>
+        </div>
+    </form>
+</div>

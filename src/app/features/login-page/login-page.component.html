@@ -1,0 +1,64 @@
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Sign in to your account</h2>
+  </div>
+
+  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <form [formGroup]="loginForm" (ngSubmit)="login()" class="space-y-6">
+      <div>
+        <label for="username" class="block text-sm/6 font-medium text-gray-900">Username</label>
+        <div class="mt-2">
+          <input type="username" id="username" formControlName="username" autocomplete="username" required
+            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6">
+          @if (loginForm.get('username')?.invalid && loginForm.get('username')?.touched) {
+          <div class="text-red-500 text-sm">
+            Username is required.
+          </div>
+          }
+        </div>
+      </div>
+
+      <div>
+        <div class="flex items-center justify-between">
+          <label for="password" class="block text-sm/6 font-medium text-gray-900">Password</label>
+          <div class="text-sm">
+            <a href="#" class="font-semibold text-blue-600 hover:text-blue-500">Forgot password?</a>
+          </div>
+        </div>
+        <div class="mt-2 relative">
+          <input [type]="hidePassword ? 'password' : 'text'" id="password" formControlName="password"
+            autocomplete="current-password" required
+            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 sm:text-sm/6">
+          <span class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
+            (click)="togglePasswordVisibility()">
+            <i [ngClass]="hidePassword ? 'fa fa-eye-slash' : 'fa fa-eye'" aria-hidden="true"></i>
+          </span>
+          @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+          <div class="text-red-500 text-sm">
+            @if (loginForm.get('password')?.errors?.['required']) {
+            <p>Password is required.</p>
+            }
+            @if (loginForm.get('password')?.errors?.['pattern']) {
+            <p>
+              Password must be at least 8 characters long, contain at least one uppercase letter, one number, and one
+              special character.
+            </p>
+            }
+          </div>
+          }
+        </div>
+        <p class="mt-2 text-sm text-gray-500">
+          Password must be at least 8 characters long, contain at least one uppercase letter, one number, and one special character.
+        </p>
+      </div>
+
+      <div>
+        <button type="submit" [disabled]="loginForm.invalid"
+          [ngClass]="{'bg-gray-400 cursor-not-allowed': loginForm.invalid, 'bg-blue-600 hover:bg-blue-500': !loginForm.invalid}"
+          class="flex w-full justify-center rounded-md px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
+          Sign in
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

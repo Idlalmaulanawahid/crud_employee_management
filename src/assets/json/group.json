@@ -1,0 +1,6 @@
+[
+    { "id": 1, "label": "Engineering", "value": "Engineering" },
+    { "id": 2, "label": "Marketing", "value": "Marketing" },
+    { "id": 3, "label": "Sales", "value": "Sales" },
+    { "id": 4, "label": "HR", "value": "HR" }
+  ]
