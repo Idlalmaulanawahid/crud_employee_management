@@ -52,14 +52,15 @@ export default class EmployeeListPageComponent implements OnInit {
       this.employees = data;
       this.filteredEmployees = this.employees;
     });
-
     this.getState()
   }
 
   getState() {
     this.employee$.subscribe((val) => {
-      this.filteredEmployees = val.employee;
-      this.searchControl = val.isSearchControl;
+      if (val.employee.length > 0) {
+        this.filteredEmployees = val.employee;
+        this.searchControl = val.isSearchControl;
+      }
     });
   }
 

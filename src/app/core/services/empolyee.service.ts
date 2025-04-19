@@ -14,6 +14,7 @@ export class EmployeeService {
 
   constructor(private http: HttpClient) {
     this.loadEmployeesFromJson();
+    this.loadGroupFromJson();
   }
   loadGroupFromJson(): void {
     this.http.get<Group[]>('assets/json/group.json', {

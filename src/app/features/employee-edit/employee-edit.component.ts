@@ -39,6 +39,7 @@ export default class EmployeeEditComponent {
       this.router.navigate(['/list-employee']);
     }
   }
+  
   cancel() {
     this.router.navigate(['/list-employee']);
   }
