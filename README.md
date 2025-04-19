@@ -10,6 +10,20 @@ This application was built using the following technologies:
 - **NgRx**: A state management library for managing application state.
 - **Angular Material UI**: A component library for building modern and responsive user interfaces.
 
+## Login Information
+
+To access the application, you need to log in with valid credentials. The login functionality has the following requirements:
+
+### Username
+- The username can be any value (no restrictions).
+
+### Password
+- The password must meet the following criteria:
+  - At least 8 characters long.
+  - Must contain at least one alphabetic character (A-Z or a-z).
+  - Must contain at least one numeric character (0-9).
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
