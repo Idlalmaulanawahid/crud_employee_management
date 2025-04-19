@@ -1,0 +1,2 @@
+import './polyfills.server.mjs';
+import{aa as s}from"./chunk-CFRPOQUP.mjs";var i=class t{isBrowser;constructor(){this.isBrowser=typeof window<"u"}setItem(e,r){this.isBrowser&&sessionStorage.setItem(e,r)}getItem(e){return this.isBrowser?sessionStorage.getItem(e):null}removeItem(e){this.isBrowser&&sessionStorage.removeItem(e)}clear(){this.isBrowser&&sessionStorage.clear()}static \u0275fac=function(r){return new(r||t)};static \u0275prov=s({token:t,factory:t.\u0275fac,providedIn:"root"})};export{i as a};

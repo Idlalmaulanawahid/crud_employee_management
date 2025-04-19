@@ -1,0 +1,8 @@
+{
+  "routes": [
+    "/",
+    "/add-employee",
+    "/list-employee",
+    "/login"
+  ]
+}
